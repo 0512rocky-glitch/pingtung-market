@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>風光傘亭導覽網頁</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* layout: desktop = phone frame beside a short note; phone = the app itself, full width */
+:root{--bg:#EEF0FB;--ink:#1F2C93;--blue:#2A3BD6;--navy:#15206B;--yellow:#F2C230;--grey:#5A6190;
+  --sans:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;--disp:'Space Grotesk','Noto Sans TC',sans-serif}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+*{box-sizing:border-box}
+.wrap{display:flex;gap:56px;align-items:center;justify-content:center;min-height:100%;padding-block:32px;flex-wrap:wrap}
+.note{max-width:360px;min-width:0}
+.note h1{font:700 56px/1 var(--disp);letter-spacing:-2px;color:var(--blue);margin:0 0 8px}
+.note p{font-size:16px;line-height:1.7;margin:12px 0 0}
+.tabs{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
+.tabs button{font:700 15px var(--sans);height:40px;padding:0 18px;border-radius:20px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.small{font-size:13px;color:var(--grey)}
+.device{width:414px;height:888px;border-radius:62px;background:linear-gradient(145deg,#3A4060,#12152A 45%,#2A2F4C);padding:12px;box-shadow:0 50px 90px -30px rgba(21,32,107,.45);flex:none;transform-origin:top center}
+.screen{width:390px;height:864px;border-radius:50px;background:#fff;overflow:hidden;position:relative}
+.app{width:390px;height:844px;position:relative;margin-top:20px;transform-origin:0 0}
+.scr{position:absolute;inset:0}
+.tap{cursor:pointer}
+.tap:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.toast{position:absolute;left:50%;bottom:110px;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:15px;font-weight:700;padding:10px 18px;border-radius:20px;white-space:nowrap;z-index:9}
+@media (max-width:520px){
+  body{padding-left:0;padding-right:0}
+  .wrap{padding-block:0;gap:0;display:block}
+  .note{display:none}
+  .device{width:100%;height:auto;border-radius:0;padding:0;background:none;box-shadow:none}
+  .screen{width:100%;border-radius:0;height:auto}
+  .app{margin-top:0}
+  .mtabs{display:flex!important}
+}
+.mtabs{display:none;gap:8px;justify-content:center;padding:10px 16px;background:var(--bg)}
+.mtabs button{font:700 14px var(--sans);height:34px;padding:0 14px;border-radius:17px;border:1.5px solid var(--blue);background:#fff;color:var(--blue)}
+.mtabs button[aria-pressed="true"]{background:var(--blue);color:#fff}
+@media (prefers-reduced-motion:no-preference){.scr{animation:in .18s ease-out}@keyframes in{from{opacity:.4;transform:translateY(6px)}}}
+</style>
+</head><body>
+<div class="wrap">
+  <div class="note">
+    <div class="small">屏東中央市場導覽站｜風光傘亭</div>
+    <h1>scan &amp; find.</h1>
+    <p>這是掃導覽柱 QR 之後打開的手機網頁原型，不用下載 App。點點看：攤位 → 預訂留貨 → 取貨號碼。</p>
+    <div class="tabs" role="group" aria-label="切換角色">
+      <button type="button" id="t-user" aria-pressed="true">民眾</button>
+      <button type="button" id="t-big" aria-pressed="false">大字模式</button>
+      <button type="button" id="t-vendor" aria-pressed="false">攤商更新</button>
+    </div>
+    <p class="small">介面原型，存量與攤位為示意資料，2026 新一代產學合作提案。</p>
+  </div>
+  <div>
+    <div class="mtabs" role="group" aria-label="切換角色">
+      <button type="button" id="m-user" aria-pressed="true">民眾</button>
+      <button type="button" id="m-big" aria-pressed="false">大字</button>
+      <button type="button" id="m-vendor" aria-pressed="false">攤商</button>
+    </div>
+    <div class="device" id="device"><div class="screen" id="screen"><div class="app" id="app"><section class="scr" id="s-home">
+<div style="position:absolute;left:16px;right:16px;top:22px">
+  <div style="display:flex;align-items:center;justify-content:space-between;height:36px">
+    <div style="font-size:14px;font-weight:700;color:#2A3BD6;white-space:nowrap">屏東中央市場</div>
+    <div style="height:36px;padding:0 14px;border-radius:18px;border:1.5px solid #2A3BD6;box-sizing:border-box;display:flex;align-items:center;gap:6px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2A3BD6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><path d="M4 7V5h11v2M9.5 5v14M7 19h5M14 12v-1.5h7V12M17.5 10.5V19M16 19h3"/></svg><span style="font-size:14px;font-weight:700;color:#2A3BD6">大字</span></div>
+  </div>
+  <div style="font-size:31px;font-weight:900;color:#2A3BD6;line-height:42px;margin-top:8px;white-space:nowrap">今天，誰還有貨？</div>
+  <div style="margin-top:2px"><svg width="200" height="16" viewBox="0 0 300 16" preserveAspectRatio="none" style="display:block"><path d="M3 10 C 45 3, 90 14, 135 8 S 215 3, 255 9 S 290 11, 297 6" fill="none" stroke="#F2C230" stroke-width="4.5" stroke-linecap="round"/></svg></div>
+  <div style="display:flex;align-items:center;gap:8px;margin-top:16px;height:52px;border:2px solid #2A3BD6;border-radius:16px;box-sizing:border-box;padding:0 6px 0 14px">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A6190" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span style="flex:1;font-size:15px;color:#5A6190;white-space:nowrap">搜尋：虱目魚、青菜、鴨肉飯</span>
+    <div style="width:40px;height:40px;border-radius:12px;background:#2A3BD6;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
+  </div>
+  <div style="display:flex;gap:8px;margin-top:12px"><div style="height:38px;padding:0 16px;border-radius:19px;display:flex;align-items:center;font-size:15px;font-weight:700;white-space:nowrap;border:1.5px solid #C9CEF3;color:#1F2C93;box-sizing:border-box">全部</div><div style="height:38px;padding:0 16px;border-radius:19px;display:flex;align-items:center;font-size:15px;font-weight:700;white-space:nowrap;background:#2A3BD6;color:#fff">魚肉</div><div style="height:38px;padding:0 16px;border-radius:19px;display:flex;align-items:center;font-size:15px;font-weight:700;white-space:nowrap;border:1.5px solid #C9CEF3;color:#1F2C93;box-sizing:border-box">蔬果</div><div style="height:38px;padding:0 16px;border-radius:19px;display:flex;align-items:center;font-size:15px;font-weight:700;white-space:nowrap;border:1.5px solid #C9CEF3;color:#1F2C93;box-sizing:border-box">小吃</div><div style="height:38px;padding:0 16px;border-radius:19px;display:flex;align-items:center;font-size:15px;font-weight:700;white-space:nowrap;border:1.5px solid #C9CEF3;color:#1F2C93;box-sizing:border-box">乾貨</div></div>
+  <div style="margin-top:14px"><div style="width:358px;height:232px;border-radius:16px;background:#EEF0FB;position:relative;flex:none"><div style="position:absolute;left:12px;top:12px;width:140px;height:92px;box-sizing:border-box;border-radius:10px;background:#fff;border:2.5px solid #2A3BD6"></div><div style="position:absolute;left:24px;top:21px;font-size:13px;font-weight:700;line-height:18px;color:#1F2C93;white-space:nowrap">第一商場<span style="font-weight:500;color:#5A6190">　魚肉</span></div><div style="position:absolute;left:24px;top:60px"><div style="width:24px;height:24px;border-radius:4px;background:#2A3BD6;flex:none"></div></div><div style="position:absolute;left:56px;top:60px"><div style="width:24px;height:24px;border-radius:4px;border:2px solid #1F2C93;box-sizing:border-box;position:relative;overflow:hidden;flex:none;background:#fff"><div style="position:absolute;left:0;right:0;bottom:0;height:10px;background:#F2C230"></div></div></div><div style="position:absolute;left:88px;top:60px"><div style="width:24px;height:24px;border-radius:4px;background:#2A3BD6;flex:none"></div></div><div style="position:absolute;left:120px;top:60px"><div style="width:24px;height:24px;border-radius:4px;border:2px solid #8A90AE;box-sizing:border-box;background:#fff;flex:none"></div></div><div style="position:absolute;left:206px;top:12px;width:140px;height:92px;box-sizing:border-box;border-radius:10px;background:#fff;border:1.5px solid #C9CEF3"></div><div style="position:absolute;left:218px;top:21px;font-size:13px;font-weight:700;line-height:18px;color:#8A90AE;white-space:nowrap">第二商場<span style="font-weight:500;color:#8A90AE">　蔬果</span></div><div style="position:absolute;left:218px;top:60px"><div style="width:24px;height:24px;border-radius:4px;background:#C9CEF3;flex:none"></div></div><div style="position:absolute;left:250px;top:60px"><div style="width:24px;height:24px;border-radius:4px;border:2px solid #C9CEF3;box-sizing:border-box;position:relative;overflow:hidden;flex:none;background:#fff"><div style="position:absolute;left:0;right:0;bottom:0;height:10px;background:#F8E7A8"></div></div></div><div style="position:absolute;left:282px;top:60px"><div style="width:24px;height:24px;border-radius:4px;border:2px solid #DADDEA;box-sizing:border-box;background:#fff;flex:none"></div></div><div style="position:absolute;left:314px;top:60px"><div style="width:24px;height:24px;border-radius:4px;background:#C9CEF3;flex:none"></div></div><div style="position:absolute;left:12px;top:128px;width:140px;height:92px;box-sizing:border-box;border-radius:10px;background:#fff;border:1.5px solid #C9CEF3"></div><div style="position:absolute;left:24px;top:137px;font-size:13px;font-weight:700;line-height:18px;color:#8A90AE;white-space:nowrap">第三商場<span style="font-weight:500;color:#8A90AE">　小吃</span></div><div style="position:absolute;left:24px;top:176px"><div style="width:24px;height:24px;border-radius:4px;border:2px solid #C9CEF3;box-sizing:border-box;position:relative;overflow:hidden;flex:none;background:#fff"><div style="position:absolute;left:0;right:0;bottom:0;height:10px;background:#F8E7A8"></div></div></div><div style="position:absolute;left:56px;top:176px"><div style="width:24px;height:24px;border-radius:4px;background:#C9CEF3;flex:none"></div></div><div style="position:absolute;left:88px;top:176px"><div style="width:24px;height:24px;border-radius:4px;background:#C9CEF3;flex:none"></div></div><div style="position:absolute;left:120px;top:176px"><div style="width:24px;height:24px;border-radius:4px;border:2px dashed #DADDEA;box-sizing:border-box;background:#fff;flex:none;display:flex;align-items:center;justify-content:center"><span style="font:700 13px/1 'Space Grotesk';color:#DADDEA">?</span></div></div><div style="position:absolute;left:206px;top:128px;width:140px;height:92px;box-sizing:border-box;border-radius:10px;background:#fff;border:1.5px solid #C9CEF3"></div><div style="position:absolute;left:218px;top:137px;font-size:13px;font-weight:700;line-height:18px;color:#8A90AE;white-space:nowrap">第四商場<span style="font-weight:500;color:#8A90AE">　乾貨</span></div><div style="position:absolute;left:218px;top:176px"><div style="width:24px;height:24px;border-radius:4px;background:#C9CEF3;flex:none"></div></div><div style="position:absolute;left:250px;top:176px"><div style="width:24px;height:24px;border-radius:4px;background:#C9CEF3;flex:none"></div></div><div style="position:absolute;left:282px;top:176px"><div style="width:24px;height:24px;border-radius:4px;border:2px solid #DADDEA;box-sizing:border-box;background:#fff;flex:none"></div></div><div style="position:absolute;left:314px;top:176px"><div style="width:24px;height:24px;border-radius:4px;background:#C9CEF3;flex:none"></div></div><div style="position:absolute;left:162px;top:99px;width:34px;height:34px;border-radius:17px;background:#F2C230;border:3px solid #2A3BD6;box-sizing:border-box"></div><div style="position:absolute;left:175px;top:112px;width:8px;height:8px;border-radius:4px;background:#2A3BD6"></div></div></div>
+  <div style="margin-top:10px"><div style="display:flex;gap:12px;align-items:center"><div style="display:flex;align-items:center;gap:6px"><div style="width:14px;height:14px;border-radius:3px;background:#2A3BD6;flex:none"></div><span style="font-size:13px;color:#1F2C93;white-space:nowrap">還有</span></div><div style="display:flex;align-items:center;gap:6px"><div style="width:14px;height:14px;border-radius:3px;border:2px solid #1F2C93;box-sizing:border-box;position:relative;overflow:hidden;flex:none;background:#fff"><div style="position:absolute;left:0;right:0;bottom:0;height:5px;background:#F2C230"></div></div><span style="font-size:13px;color:#1F2C93;white-space:nowrap">剩不多</span></div><div style="display:flex;align-items:center;gap:6px"><div style="width:14px;height:14px;border-radius:3px;border:2px solid #8A90AE;box-sizing:border-box;background:#fff;flex:none"></div><span style="font-size:13px;color:#1F2C93;white-space:nowrap">賣完</span></div><div style="display:flex;align-items:center;gap:6px"><div style="width:14px;height:14px;border-radius:3px;border:2px dashed #8A90AE;box-sizing:border-box;background:#fff;flex:none;display:flex;align-items:center;justify-content:center"><span style="font:700 7px/1 'Space Grotesk';color:#8A90AE">?</span></div><span style="font-size:13px;color:#1F2C93;white-space:nowrap">未確認</span></div><div style="display:flex;align-items:center;gap:6px"><div style="width:14px;height:14px;border-radius:50%;background:#F2C230;border:2px solid #2A3BD6;box-sizing:border-box"></div><span style="font-size:13px;color:#1F2C93;white-space:nowrap">你在傘下</span></div></div></div>
+  <div style="font-size:14px;font-weight:700;color:#5A6190;margin-top:16px;line-height:20px">魚肉｜離你最近</div>
+  <div><div style="display:flex;align-items:center;gap:14px;height:62px;border-bottom:1px solid #C9CEF3">
+      <div style="width:26px;height:26px;border-radius:4px;background:#2A3BD6;flex:none"></div><div style="flex:1;min-width:0"><div style="font-size:17px;font-weight:700;color:#1F2C93;line-height:24px;white-space:nowrap">虱目魚攤</div>
+      <div style="font-size:13px;color:#5A6190;line-height:18px;white-space:nowrap">第一商場｜走 2 分鐘</div></div>
+      <div style="font-size:15px;font-weight:700;color:#2A3BD6;white-space:nowrap">還有</div></div><div style="display:flex;align-items:center;gap:14px;height:62px;border-bottom:1px solid #C9CEF3">
+      <div style="width:26px;height:26px;border-radius:4px;border:2px solid #1F2C93;box-sizing:border-box;position:relative;overflow:hidden;flex:none;background:#fff"><div style="position:absolute;left:0;right:0;bottom:0;height:11px;background:#F2C230"></div></div><div style="flex:1;min-width:0"><div style="font-size:17px;font-weight:700;color:#1F2C93;line-height:24px;white-space:nowrap">鮮魚攤</div>
+      <div style="font-size:13px;color:#5A6190;line-height:18px;white-space:nowrap">第一商場｜走 2 分鐘</div></div>
+      <div style="font-size:15px;font-weight:700;color:#8A6100;white-space:nowrap">剩不多</div></div><div style="display:flex;align-items:center;gap:14px;height:62px;border-bottom:1px solid #C9CEF3">
+      <div style="width:26px;height:26px;border-radius:4px;background:#2A3BD6;flex:none"></div><div style="flex:1;min-width:0"><div style="font-size:17px;font-weight:700;color:#1F2C93;line-height:24px;white-space:nowrap">黑豬肉攤</div>
+      <div style="font-size:13px;color:#5A6190;line-height:18px;white-space:nowrap">第一商場｜走 3 分鐘</div></div>
+      <div style="font-size:15px;font-weight:700;color:#2A3BD6;white-space:nowrap">還有</div></div></div>
+</div><div style="position:absolute;left:0;right:0;bottom:0;height:68px;background:#15206B;border-radius:0 0 48px 48px;display:flex;align-items:center;gap:10px;padding:0 22px 6px;box-sizing:border-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 21v-3M16 21v-3"/></svg><span style="color:#fff;font-size:16px;font-weight:700;white-space:nowrap">往屏東車站　下一班 6 分鐘</span><span style="margin-left:auto;color:#F2C230;font:700 17px Space Grotesk">32°C</span></div></section><section class="scr" id="s-stall" hidden>
+<div style="position:absolute;left:16px;right:16px;top:22px">
+  <div style="display:flex;align-items:center;gap:4px;height:36px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A3BD6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><path d="M15 5l-7 7 7 7"/></svg><span style="font-size:15px;font-weight:700;color:#2A3BD6">回地圖</span></div>
+  <div style="display:flex;align-items:center;gap:10px;margin-top:10px">
+    <div style="height:26px;padding:0 10px;border-radius:13px;background:#EEF0FB;display:flex;align-items:center;font-size:13px;font-weight:700;color:#2A3BD6;white-space:nowrap">第一商場</div>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A6190" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><circle cx="13" cy="4.5" r="1.8"/><path d="M10 21l2-6 3 3v3M9 12l2-4 4 2 2 3M11 8l-2 5"/></svg><span style="font-size:13px;color:#5A6190;white-space:nowrap">從傘亭走 2 分鐘</span></div>
+  <div style="font-size:34px;font-weight:900;color:#2A3BD6;line-height:46px;margin-top:8px;white-space:nowrap" id="stallname">虱目魚攤</div>
+  <div style="display:flex;align-items:center;gap:8px;margin-top:4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5A6190" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span style="font-size:13px;color:#5A6190;white-space:nowrap">攤商 8 分鐘前更新</span></div>
+  <div style="font-size:16px;font-weight:700;color:#1F2C93;margin:20px 0 10px;line-height:22px">選你要留的貨</div>
+  <div style="display:flex;align-items:center;gap:14px;height:60px;padding:0 14px;border-radius:14px;box-sizing:border-box;background:#EEF0FB;border:2px solid #2A3BD6;margin-bottom:8px">
+          <div style="width:24px;height:24px;border-radius:4px;background:#2A3BD6;flex:none"></div><div style="flex:1;font-size:17px;font-weight:700;color:#1F2C93;white-space:nowrap">虱目魚肚</div>
+          <div style="font-size:14px;font-weight:700;color:#2A3BD6;white-space:nowrap">還有</div><div style="width:26px;height:26px;border-radius:13px;background:#2A3BD6;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div></div><div style="display:flex;align-items:center;gap:14px;height:60px;padding:0 14px;border-radius:14px;box-sizing:border-box;border:1.5px solid #C9CEF3;margin-bottom:8px">
+          <div style="width:24px;height:24px;border-radius:4px;border:2px solid #1F2C93;box-sizing:border-box;position:relative;overflow:hidden;flex:none;background:#fff"><div style="position:absolute;left:0;right:0;bottom:0;height:10px;background:#F2C230"></div></div><div style="flex:1;font-size:17px;font-weight:700;color:#1F2C93;white-space:nowrap">虱目魚皮</div>
+          <div style="font-size:14px;font-weight:700;color:#8A6100;white-space:nowrap">剩不多</div><div style="width:26px;height:26px;border-radius:13px;border:2px solid #C9CEF3;box-sizing:border-box"></div></div><div style="display:flex;align-items:center;gap:14px;height:60px;padding:0 14px;border-radius:14px;box-sizing:border-box;border:1.5px solid #C9CEF3;margin-bottom:8px">
+          <div style="width:24px;height:24px;border-radius:4px;background:#2A3BD6;flex:none"></div><div style="flex:1;font-size:17px;font-weight:700;color:#1F2C93;white-space:nowrap">魚丸</div>
+          <div style="font-size:14px;font-weight:700;color:#2A3BD6;white-space:nowrap">還有</div><div style="width:26px;height:26px;border-radius:13px;border:2px solid #C9CEF3;box-sizing:border-box"></div></div><div style="display:flex;align-items:center;gap:14px;height:60px;padding:0 14px;border-radius:14px;box-sizing:border-box;border:1.5px solid #C9CEF3;margin-bottom:8px">
+          <div style="width:24px;height:24px;border-radius:4px;border:2px solid #8A90AE;box-sizing:border-box;background:#fff;flex:none"></div><div style="flex:1;font-size:17px;font-weight:700;color:#5A6190;white-space:nowrap">魚頭</div>
+          <div style="font-size:14px;font-weight:700;color:#5A6190;white-space:nowrap">賣完</div><div style="width:26px;height:26px;border-radius:13px;border:2px solid #DADDEA;box-sizing:border-box"></div></div>
+  <div style="font-size:16px;font-weight:700;color:#1F2C93;margin:16px 0 10px;line-height:22px">什麼時候來拿？</div>
+  <div style="display:flex;gap:8px"><div style="flex:1;height:48px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box;border:1.5px solid #C9CEF3;color:#1F2C93"><span style="font:700 17px/20px Space Grotesk">12:00</span><span style="font-size:11px;line-height:14px;white-space:nowrap">午休</span></div><div style="flex:1;height:48px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box;background:#2A3BD6;color:#fff"><span style="font:700 17px/20px Space Grotesk">17:30</span><span style="font-size:11px;line-height:14px;white-space:nowrap">下班</span></div><div style="flex:1;height:48px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box;border:1.5px solid #C9CEF3;color:#1F2C93"><span style="font:700 17px/20px Space Grotesk">19:00</span><span style="font-size:11px;line-height:14px;white-space:nowrap">晚市</span></div></div>
+  <div style="display:flex;align-items:center;gap:8px;margin-top:16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A6190" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/></svg><span style="font-size:13px;color:#5A6190;white-space:nowrap">不用線上付款，到攤位報號碼再付錢</span></div>
+</div>
+<div style="position:absolute;left:16px;right:16px;bottom:26px;height:58px;border-radius:16px;background:#2A3BD6;display:flex;align-items:center;justify-content:center">
+  <span style="font-size:19px;font-weight:900;color:#fff;white-space:nowrap">預訂留貨</span></div></section><section class="scr" id="s-done" hidden>
+<div style="position:absolute;left:16px;right:16px;top:22px;display:flex;flex-direction:column;align-items:center">
+  <div style="width:100%;display:flex;align-items:center;gap:4px;height:36px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A3BD6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><path d="M15 5l-7 7 7 7"/></svg><span style="font-size:15px;font-weight:700;color:#2A3BD6">回地圖</span></div>
+  <div style="width:72px;height:72px;border-radius:36px;background:#F2C230;display:flex;align-items:center;justify-content:center;margin-top:28px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2A3BD6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+  <div style="font-size:32px;font-weight:900;color:#2A3BD6;line-height:44px;margin-top:14px">留好了！</div>
+  <div style="font-size:15px;color:#5A6190;line-height:22px;margin-top:2px">到攤位跟老闆說這個號碼</div>
+  <div style="width:100%;border:2.5px solid #2A3BD6;border-radius:22px;box-sizing:border-box;margin-top:22px;padding:18px 0 22px;display:flex;flex-direction:column;align-items:center">
+    <div style="font-size:14px;font-weight:700;color:#5A6190;line-height:20px">取貨號碼</div>
+    <div style="font:700 104px/112px Space Grotesk;color:#2A3BD6;letter-spacing:-2px;margin-top:6px">A27</div>
+    <div style="width:84%;height:1.5px;background:#C9CEF3;margin:12px 0 14px"></div>
+    <div style="font-size:18px;font-weight:700;color:#1F2C93;line-height:26px;white-space:nowrap">虱目魚肚　1 份</div>
+    <div style="font-size:14px;color:#5A6190;line-height:22px;white-space:nowrap">虱目魚攤｜第一商場</div>
+    <div style="display:flex;align-items:center;gap:6px;margin-top:10px;height:34px;padding:0 14px;border-radius:17px;background:#EEF0FB"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2A3BD6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span style="font-size:14px;font-weight:700;color:#2A3BD6;white-space:nowrap">今天 17:30 來拿，留到 17:45</span></div>
+  </div>
+  <div style="font-size:13px;color:#5A6190;line-height:20px;margin-top:14px;white-space:nowrap">超過時間沒來拿，會自動取消並通知攤商</div>
+</div>
+<div style="position:absolute;left:16px;right:16px;bottom:96px;height:58px;border-radius:16px;background:#2A3BD6;display:flex;align-items:center;justify-content:center;gap:8px">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><circle cx="13" cy="4.5" r="1.8"/><path d="M10 21l2-6 3 3v3M9 12l2-4 4 2 2 3M11 8l-2 5"/></svg><span style="font-size:19px;font-weight:900;color:#fff;white-space:nowrap">帶我走過去</span></div>
+<div style="position:absolute;left:16px;right:16px;bottom:34px;height:44px;display:flex;align-items:center;justify-content:center">
+  <span style="font-size:16px;font-weight:700;color:#5A6190;white-space:nowrap">取消預訂</span></div></section><section class="scr" id="s-big" hidden>
+<div style="position:absolute;left:18px;right:18px;top:22px">
+  <div style="display:flex;align-items:center;justify-content:space-between;height:40px">
+    <div style="font-size:18px;font-weight:700;color:#2A3BD6;white-space:nowrap">屏東中央市場</div>
+    <div style="height:40px;padding:0 16px;border-radius:20px;background:#2A3BD6;display:flex;align-items:center;gap:6px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><path d="M4 7V5h11v2M9.5 5v14M7 19h5M14 12v-1.5h7V12M17.5 10.5V19M16 19h3"/></svg><span style="font-size:17px;font-weight:700;color:#fff">大字</span></div>
+  </div>
+  <div style="font-size:42px;font-weight:900;color:#2A3BD6;line-height:54px;margin-top:12px">要買什麼？</div>
+  <div style="display:flex;align-items:center;gap:16px;margin-top:16px;height:96px;border-radius:24px;background:#2A3BD6;padding:0 22px;box-sizing:border-box">
+    <div style="width:60px;height:60px;border-radius:30px;background:#fff;display:flex;align-items:center;justify-content:center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2A3BD6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
+    <div><div style="font-size:24px;font-weight:900;color:#fff;line-height:32px">按一下，說說看</div><div style="font-size:16px;color:#fff;line-height:22px">也可以請志工幫忙</div></div></div>
+  <div style="margin-top:18px;padding:16px 18px;border-radius:20px;background:#EEF0FB">
+    <div style="font-size:17px;color:#5A6190;line-height:26px">你說：「今天的虱目魚還有嗎？」</div>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:10px"><div style="width:40px;height:40px;border-radius:6px;background:#2A3BD6;flex:none"></div><div style="font-size:30px;font-weight:900;color:#2A3BD6;line-height:38px">還有！</div></div>
+    <div style="font-size:21px;font-weight:700;color:#1F2C93;line-height:32px;margin-top:8px">虱目魚攤，第一商場</div>
+    <div style="font-size:19px;color:#1F2C93;line-height:28px">從傘亭走 2 分鐘</div>
+    <div style="height:56px;border-radius:16px;background:#2A3BD6;margin-top:12px;display:flex;align-items:center;justify-content:center"><span style="font-size:21px;font-weight:900;color:#fff">幫我留一份</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px"><div style="height:84px;border-radius:18px;border:2px solid #C9CEF3;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#1F2C93">魚肉</div><div style="height:84px;border-radius:18px;border:2px solid #C9CEF3;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#1F2C93">蔬果</div><div style="height:84px;border-radius:18px;border:2px solid #C9CEF3;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#1F2C93">小吃</div><div style="height:84px;border-radius:18px;border:2px solid #C9CEF3;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#1F2C93">乾貨</div></div>
+</div><div style="position:absolute;left:0;right:0;bottom:0;height:68px;background:#15206B;border-radius:0 0 48px 48px;display:flex;align-items:center;gap:10px;padding:0 22px 6px;box-sizing:border-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;flex:none"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 21v-3M16 21v-3"/></svg><span style="color:#fff;font-size:16px;font-weight:700;white-space:nowrap">往屏東車站　下一班 6 分鐘</span><span style="margin-left:auto;color:#F2C230;font:700 17px Space Grotesk">32°C</span></div></section><section class="scr" id="s-vendor" hidden>
+<div style="position:absolute;left:16px;right:16px;top:22px">
+  <div style="display:flex;align-items:center;justify-content:space-between;height:36px">
+    <div style="font-size:14px;font-weight:700;color:#2A3BD6;white-space:nowrap">攤商更新｜虱目魚攤</div>
+    <div style="font-size:13px;color:#5A6190;white-space:nowrap">從 LINE 打開</div></div>
+  <div style="font-size:31px;font-weight:900;color:#2A3BD6;line-height:42px;margin-top:8px;white-space:nowrap">現在還有嗎？</div>
+  <div style="margin-top:2px"><svg width="170" height="16" viewBox="0 0 300 16" preserveAspectRatio="none" style="display:block"><path d="M3 10 C 45 3, 90 14, 135 8 S 215 3, 255 9 S 290 11, 297 6" fill="none" stroke="#F2C230" stroke-width="4.5" stroke-linecap="round"/></svg></div>
+  <div style="font-size:14px;color:#5A6190;line-height:20px;margin:10px 0 14px;white-space:nowrap">按一下就更新，傘亭和手機會同步顯示</div>
+  <div style="padding:12px 14px 14px;border:1.5px solid #C9CEF3;border-radius:16px;box-sizing:border-box;margin-bottom:10px"><div style="font-size:17px;font-weight:700;color:#1F2C93;line-height:24px">虱目魚肚</div><div style="display:flex;gap:6px;margin-top:10px"><div style="flex:1;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;white-space:nowrap;background:#2A3BD6;color:#fff">還有</div><div style="flex:1;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;white-space:nowrap;background:#fff;color:#1F2C93;border:1.5px solid #C9CEF3;box-sizing:border-box">剩不多</div><div style="flex:1;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;white-space:nowrap;background:#fff;color:#1F2C93;border:1.5px solid #C9CEF3;box-sizing:border-box">賣完</div></div></div><div style="padding:12px 14px 14px;border:1.5px solid #C9CEF3;border-radius:16px;box-sizing:border-box;margin-bottom:10px"><div style="font-size:17px;font-weight:700;color:#1F2C93;line-height:24px">虱目魚皮</div><div style="display:flex;gap:6px;margin-top:10px"><div style="flex:1;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;white-space:nowrap;background:#fff;color:#1F2C93;border:1.5px solid #C9CEF3;box-sizing:border-box">還有</div><div style="flex:1;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;white-space:nowrap;background:#F2C230;color:#15206B">剩不多</div><div style="flex:1;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;white-space:nowrap;background:#fff;color:#1F2C93;border:1.5px solid #C9CEF3;box-sizing:border-box">賣完</div></div></div><div style="padding:12px 14px 14px;border:1.5px solid #C9CEF3;border-radius:16px;box-sizing:border-box;margin-bottom:10px"><div style="font-size:17px;font-weight:700;color:#1F2C93;line-height:24px">魚丸</div><div style="display:flex;gap:6px;margin-top:10px"><div style="flex:1;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;white-space:nowrap;background:#2A3BD6;color:#fff">還有</div><div style="flex:1;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;white-space:nowrap;background:#fff;color:#1F2C93;border:1.5px solid #C9CEF3;box-sizing:border-box">剩不多</div><div style="flex:1;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;white-space:nowrap;background:#fff;color:#1F2C93;border:1.5px solid #C9CEF3;box-sizing:border-box">賣完</div></div></div><div style="padding:12px 14px 14px;border:1.5px solid #C9CEF3;border-radius:16px;box-sizing:border-box;margin-bottom:10px"><div style="font-size:17px;font-weight:700;color:#1F2C93;line-height:24px">魚頭</div><div style="display:flex;gap:6px;margin-top:10px"><div style="flex:1;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;white-space:nowrap;background:#fff;color:#1F2C93;border:1.5px solid #C9CEF3;box-sizing:border-box">還有</div><div style="flex:1;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;white-space:nowrap;background:#fff;color:#1F2C93;border:1.5px solid #C9CEF3;box-sizing:border-box">剩不多</div><div style="flex:1;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;white-space:nowrap;background:#5A6190;color:#fff">賣完</div></div></div>
+  <div style="font-size:16px;font-weight:700;color:#1F2C93;margin:14px 0 8px;line-height:22px">今天的預訂</div>
+  <div style="display:flex;align-items:center;gap:12px;height:50px;border-bottom:1px solid #C9CEF3">
+    <span style="font:700 20px Space Grotesk;color:#2A3BD6;width:52px">A27</span><span style="flex:1;font-size:15px;color:#1F2C93;white-space:nowrap">虱目魚肚 1 份</span><span style="font:700 15px Space Grotesk;color:#1F2C93">17:30</span></div>
+  <div style="display:flex;align-items:center;gap:12px;height:50px;border-bottom:1px solid #C9CEF3">
+    <span style="font:700 20px Space Grotesk;color:#8A90AE;width:52px">A25</span><span style="flex:1;font-size:15px;color:#5A6190;white-space:nowrap">魚丸 2 包</span><span style="font-size:14px;font-weight:700;color:#5A6190">已取貨</span></div>
+</div></section></div></div></div>
+  </div>
+</div>
+<script>
+const $=s=>document.querySelector(s), all=(r,s)=>[...r.querySelectorAll(s)];
+function show(k){all(document,'.scr').forEach(e=>e.hidden=e.id!=='s-'+k);
+  const role=k==='vendor'?'vendor':k==='big'?'big':'user';
+  ['user','big','vendor'].forEach(r=>{['t-','m-'].forEach(p=>{const b=$('#'+p+r);if(b)b.setAttribute('aria-pressed',r===role)})})}
+function find(scr,txt){ // smallest element whose own text equals txt
+  return all($('#s-'+scr),'*').filter(e=>e.children.length===0&&e.textContent.trim()===txt)[0]}
+function tap(el,fn){if(!el)return;el.classList.add('tap');el.tabIndex=0;el.setAttribute('role','button');
+  el.addEventListener('click',fn);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fn()}})}
+function up(el,n){for(let i=0;i<n&&el;i++)el=el.parentElement;return el}
+function toast(msg){const t=document.createElement('div');t.className='toast';t.textContent=msg;$('#app').appendChild(t);setTimeout(()=>t.remove(),1600)}
+// home
+['虱目魚攤','鮮魚攤','黑豬肉攤'].forEach(n=>tap(up(find('home',n),2),()=>{$('#stallname').textContent=n;const d=all($('#s-done'),'div').find(x=>x.children.length===0&&/｜第一商場$/.test(x.textContent.trim()));if(d)d.textContent=n+'｜第一商場';show('stall')}));
+tap(up(find('home','大字'),1),()=>show('big'));
+all($('#s-home'),'div').filter(d=>/^(全部|魚肉|蔬果|小吃|乾貨)$/.test(d.textContent.trim())&&d.style.borderRadius==='19px').forEach((c,_,arr)=>tap(c,()=>{
+  arr.forEach(x=>{x.style.background='';x.style.color='#1F2C93';x.style.border='1.5px solid #C9CEF3'});c.style.background='#2A3BD6';c.style.color='#fff';c.style.border='none'}));
+// stall
+tap(up(find('stall','回地圖'),1),()=>show('home'));
+const rows=all($('#s-stall'),'div').filter(d=>d.style.height==='60px'&&d.style.borderRadius==='14px');
+rows.forEach(r=>{if(r.textContent.includes('賣完'))return;tap(r,()=>{const sel=r.style.background!=='';
+  r.style.background=sel?'':'#EEF0FB';r.style.border=sel?'1.5px solid #C9CEF3':'2px solid #2A3BD6';
+  const rd=r.lastElementChild;rd.style.background=sel?'':'#2A3BD6';rd.style.border=sel?'2px solid #C9CEF3':'none';
+  rd.innerHTML=sel?'':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:5px"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'})});
+const slots=all($('#s-stall'),'div').filter(d=>/^(12:00|17:30|19:00)/.test(d.textContent.trim())&&d.children.length===2);
+slots.forEach(s=>tap(s,()=>{slots.forEach(x=>{x.style.background='#fff';x.style.color='#1F2C93';x.style.border='1.5px solid #C9CEF3'});s.style.background='#2A3BD6';s.style.color='#fff';s.style.border='none';
+  const tm=s.firstElementChild.textContent.trim();const[h,m]=tm.split(':').map(Number);const e=new Date(0,0,0,h,m+15);
+  const pill=all($('#s-done'),'span').find(x=>x.textContent.includes('來拿'));pill.textContent=`今天 ${tm} 來拿，留到 ${String(e.getHours()).padStart(2,'0')}:${String(e.getMinutes()).padStart(2,'0')}`}));
+tap(up(find('stall','預訂留貨'),1),()=>{
+  const picked=rows.filter(r=>r.style.background!=='').map(r=>r.querySelector('div:nth-child(2)').textContent.trim());
+  if(!picked.length){toast('先選一樣要留的貨');return}
+  const big=all($('#s-done'),'div').find(d=>d.textContent.trim().startsWith('虱目魚肚')&&d.children.length===0)||all($('#s-done'),'div').find(d=>/　1 份$/.test(d.textContent.trim()));
+  if(big)big.textContent=picked.join('、')+'　各 1 份';show('done')});
+// done
+tap(up(find('done','回地圖'),1),()=>show('home'));
+tap(up(find('done','取消預訂'),1),()=>{show('home');toast('已取消，攤商會收到通知')});
+tap(up(find('done','帶我走過去'),1),()=>toast('從傘亭往第一商場，約 2 分鐘'));
+// big
+tap(up(find('big','大字'),1),()=>show('home'));
+tap(up(find('big','幫我留一份'),1),()=>show('done'));
+tap(up(find('big','按一下，說說看'),2),()=>toast('原型：語音輸入示意'));
+// vendor: three-state buttons
+const ST={'還有':['#2A3BD6','#fff'],'剩不多':['#F2C230','#15206B'],'賣完':['#5A6190','#fff']};
+all($('#s-vendor'),'div').filter(d=>/^(還有|剩不多|賣完)$/.test(d.textContent.trim())&&d.children.length===0&&d.style.height==='46px').forEach(b=>tap(b,()=>{
+  [...b.parentElement.children].forEach(x=>{x.style.background='#fff';x.style.color='#1F2C93';x.style.border='1.5px solid #C9CEF3'});
+  const[bg,fg]=ST[b.textContent.trim()];b.style.background=bg;b.style.color=fg;b.style.border='none';toast('已更新：'+b.textContent.trim())}));
+// role tabs
+[['user','home'],['big','big'],['vendor','vendor']].forEach(([r,k])=>['t-','m-'].forEach(p=>{const b=$('#'+p+r);if(b)b.addEventListener('click',()=>show(k))}));
+// fit phone layout to screen width
+function fit(){const a=$('#app'),sc=$('#screen');
+  if(innerWidth<=520){const s=sc.clientWidth/390;a.style.transform=`scale(${s})`;sc.style.height=(844*s)+'px'}
+  else{a.style.transform='';sc.style.height='';const h=innerHeight-40;$('#device').style.transform=h<888?`scale(${Math.max(.6,h/888)})`:'';}}
+addEventListener('resize',fit);fit();
+</script>
+</body></html>
